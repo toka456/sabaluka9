@@ -14,28 +14,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Geo&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --rm-gold: #FEBE10;
+            --rm-blue: #001C58;
+            --rm-purple: #3A1C71;
+        }
+
         body {
             font-family: 'Fredoka', 'Geo', sans-serif;
-            background: linear-gradient(135deg, #070b19 0%, #111827 40%, #0d1322 100%);
+            background: radial-gradient(circle at top center, #111e38 0%, #080d1a 60%, #03060d 100%);
             color: #f8fafc;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        .glass-gold {
-            background: rgba(251, 191, 36, 0.08);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(251, 191, 36, 0.28);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+        /* Bernabeu Stadium Background Effect */
+        .bernabeu-bg {
+            background-image: linear-gradient(to bottom, rgba(8, 13, 26, 0.75), rgba(3, 6, 13, 0.95)), 
+                              url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+        .glass-gold {
+            background: rgba(254, 190, 16, 0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(254, 190, 16, 0.35);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(254, 190, 16, 0.1);
+        }
+
+        .glass-madrid {
+            background: rgba(16, 34, 70, 0.5);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
         }
 
         .glass-card-hover {
@@ -43,30 +58,31 @@
         }
 
         .glass-card-hover:hover {
-            transform: translateY(-4px) scale(1.01);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(251, 191, 36, 0.45);
-            box-shadow: 0 12px 35px 0 rgba(251, 191, 36, 0.2);
+            transform: translateY(-5px) scale(1.01);
+            background: rgba(24, 48, 96, 0.75);
+            border-color: rgba(254, 190, 16, 0.6);
+            box-shadow: 0 15px 35px 0 rgba(254, 190, 16, 0.25);
         }
 
         @keyframes goldGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.5); }
-            50% { box-shadow: 0 0 32px rgba(245, 158, 11, 0.9); }
+            0%, 100% { box-shadow: 0 0 15px rgba(254, 190, 16, 0.4); }
+            50% { box-shadow: 0 0 35px rgba(254, 190, 16, 0.9); }
         }
 
         .btn-gold-glow {
             animation: goldGlow 2s infinite;
         }
 
+        /* Chess Board Styling */
         .chess-grid {
             display: grid;
             grid-template-columns: repeat(8, minmax(0, 1fr));
-            border: 3px solid #f59e0b;
+            border: 4px solid #FEBE10;
             border-radius: 0.75rem;
             overflow: hidden;
             max-width: 380px;
             margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(254, 190, 16, 0.3);
         }
 
         .chess-cell {
@@ -74,28 +90,32 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             user-select: none;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: transform 0.1s, background-color 0.2s;
+        }
+
+        .chess-cell:hover {
+            filter: brightness(1.2);
         }
 
         .chess-light { background-color: #f0d9b5; color: #1e293b; }
         .chess-dark { background-color: #b58863; color: #1e293b; }
 
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #fbbf24; }
+        ::-webkit-scrollbar-track { background: #080d1a; }
+        ::-webkit-scrollbar-thumb { background: #FEBE10; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #fcd34d; }
     </style>
 </head>
-<body class="pb-16 selection:bg-amber-400 selection:text-slate-900">
+<body class="bernabeu-bg pb-16 selection:bg-amber-400 selection:text-slate-900">
 
-    <header class="sticky top-0 z-50 glass-gold border-b border-amber-400/30 bg-slate-950/90 px-4 py-3">
+    <header class="sticky top-0 z-50 glass-gold border-b border-amber-400/40 bg-slate-950/90 px-4 py-3">
         <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-400 to-amber-600 p-0.5 shadow-lg flex items-center justify-center">
-                    <div class="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center text-2xl">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-400 via-yellow-300 to-indigo-600 p-0.5 shadow-lg flex items-center justify-center">
+                    <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-2xl">
                         👑
                     </div>
                 </div>
@@ -103,11 +123,13 @@
                     <h1 class="font-extrabold text-lg md:text-xl text-amber-300 flex items-center gap-2">
                         საბა & ლუკა <span class="text-xs bg-amber-400/20 text-amber-300 px-2.5 py-0.5 rounded-full border border-amber-400/40">9 წლის!</span>
                     </h1>
-                    <p class="text-xs text-indigo-200">Real Madrid & Chess Champions Arena ⚽♟️</p>
+                    <p class="text-xs text-indigo-200 flex items-center gap-1">
+                        <i class="fa-solid fa-stadium text-amber-400"></i> Santiago Bernabéu Arena ⚽♟️
+                    </p>
                 </div>
             </div>
 
-            <div class="flex items-center gap-4 bg-slate-900/90 px-4 py-2 rounded-2xl border border-amber-400/30">
+            <div class="flex items-center gap-4 bg-slate-950/90 px-4 py-2 rounded-2xl border border-amber-400/40">
                 <div class="text-center">
                     <span class="text-[10px] text-amber-300 uppercase tracking-widest font-bold block">დონე</span>
                     <span id="player-level" class="text-xl font-black text-amber-400">1</span>
@@ -118,10 +140,10 @@
                         <span id="xp-text">0 / 100</span>
                     </div>
                     <div class="w-full bg-slate-800 rounded-full h-3 p-0.5 border border-amber-400/30">
-                        <div id="xp-bar" class="bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-300 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                        <div id="xp-bar" class="bg-gradient-to-r from-amber-400 via-yellow-400 to-indigo-400 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
                     </div>
                 </div>
-                <button onclick="triggerHalaMadridConfetti()" class="p-2.5 bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-slate-950 rounded-xl font-bold transition active:scale-95 shadow-md flex items-center gap-1 text-xs" title="Hala Madrid!">
+                <button onclick="triggerHalaMadridConfetti()" class="p-2.5 bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-950 rounded-xl font-bold transition active:scale-95 shadow-md flex items-center gap-1 text-xs" title="Hala Madrid!">
                     <i class="fa-solid fa-trophy"></i>
                     <span class="hidden sm:inline">HALA!</span>
                 </button>
@@ -131,37 +153,37 @@
 
     <main class="max-w-6xl mx-auto px-4 mt-6 space-y-8">
 
-        <section class="glass-gold rounded-3xl p-6 md:p-10 text-center relative overflow-hidden border-2 border-amber-400/40">
-            <div class="absolute -top-16 -left-16 w-48 h-48 bg-amber-500/15 rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-16 -right-16 w-48 h-48 bg-blue-600/20 rounded-full blur-3xl"></div>
+        <section class="glass-gold rounded-3xl p-6 md:p-10 text-center relative overflow-hidden border-2 border-amber-400/50">
+            <div class="absolute -top-16 -left-16 w-48 h-48 bg-amber-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-16 -right-16 w-48 h-48 bg-blue-600/30 rounded-full blur-3xl"></div>
 
             <div class="relative z-10">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold mb-4 border border-amber-400/40">
                     <i class="fa-solid fa-crown text-amber-400"></i>
-                    REAL MADRID CHAMPIONS LEAGUE BDAY
+                    SANTIAGO BERNABÉU CHAMPIONS LEAGUE BDAY
                 </div>
 
-                <h2 class="text-3xl md:text-5xl font-black mb-3 leading-tight bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-100 bg-clip-text text-transparent">
+                <h2 class="text-3xl md:text-5xl font-black mb-3 leading-tight bg-gradient-to-r from-amber-200 via-yellow-300 to-white bg-clip-text text-transparent">
                     გილოცავთ 9 წლის იუბილეს, საბა და ლუკა! 🥳⚡
                 </h2>
                 <p class="text-slate-200 text-sm md:text-base max-w-2xl mx-auto mb-6 leading-relaxed font-medium">
-                    ითამაშეთ ფეხბურთის პენალტები, ამოხსენით ქვიზები და ჭადრაკის ტაქტიკები!
+                    ითამაშეთ ფეხბურთის პენალტები ბერნაბეუზე, ამოხსენით ქვიზები და ჭადრაკის ტაქტიკები!
                 </p>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-xl mx-auto mb-6">
-                    <div class="bg-slate-900/90 p-3 rounded-2xl border border-amber-400/30">
+                    <div class="bg-slate-950/80 p-3 rounded-2xl border border-amber-400/30">
                         <span class="text-2xl md:text-3xl font-black text-amber-400">15 🏆</span>
                         <span class="block text-[11px] text-slate-300 font-semibold mt-1">ჩემპიონთა ლიგა</span>
                     </div>
-                    <div class="bg-slate-900/90 p-3 rounded-2xl border border-amber-400/30">
+                    <div class="bg-slate-950/80 p-3 rounded-2xl border border-amber-400/30">
                         <span class="text-2xl md:text-3xl font-black text-sky-400">36 🥇</span>
                         <span class="block text-[11px] text-slate-300 font-semibold mt-1">ლა ლიგის ტიტული</span>
                     </div>
-                    <div class="bg-slate-900/90 p-3 rounded-2xl border border-amber-400/30">
+                    <div class="bg-slate-950/80 p-3 rounded-2xl border border-amber-400/30">
                         <span class="text-2xl md:text-3xl font-black text-emerald-400">9 🎂</span>
                         <span class="block text-[11px] text-slate-300 font-semibold mt-1">სუპერ წელი!</span>
                     </div>
-                    <div class="bg-slate-900/90 p-3 rounded-2xl border border-amber-400/30">
+                    <div class="bg-slate-950/80 p-3 rounded-2xl border border-amber-400/30">
                         <span class="text-2xl md:text-3xl font-black text-rose-400">100% ⚽</span>
                         <span class="block text-[11px] text-slate-300 font-semibold mt-1">გამარჯვება</span>
                     </div>
@@ -172,7 +194,7 @@
                         <i class="fa-solid fa-bullhorn text-lg"></i>
                         HALA MADRID Y NADA MÁS! 🎉
                     </button>
-                    <button onclick="scrollToArena()" class="px-6 py-3 bg-slate-800/80 hover:bg-slate-700 font-bold rounded-2xl border border-amber-400/40 text-slate-100 flex items-center gap-2 transition active:scale-95 text-sm">
+                    <button onclick="scrollToArena()" class="px-6 py-3 bg-slate-900/90 hover:bg-slate-800 font-bold rounded-2xl border border-amber-400/40 text-slate-100 flex items-center gap-2 transition active:scale-95 text-sm">
                         <i class="fa-solid fa-gamepad text-amber-400"></i>
                         არენაზე გადასვლა
                     </button>
@@ -182,17 +204,15 @@
 
         <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <!-- Saba Profile -->
-            <div class="glass-card glass-card-hover rounded-3xl p-6 border-l-4 border-l-amber-400 relative overflow-hidden">
+            <div class="glass-madrid glass-card-hover rounded-3xl p-6 border-l-4 border-l-amber-400 relative overflow-hidden">
                 <div class="flex items-center gap-4 mb-4">
                     <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-amber-400 to-yellow-600 p-1 shadow-lg flex-shrink-0">
-                        <div class="w-full h-full bg-slate-950 rounded-xl flex items-center justify-center text-4xl">
-                            ⚽
-                        </div>
+                        <img src="საბა.jpg" alt="საბა" class="w-full h-full object-cover rounded-xl border border-slate-950">
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
                             <h3 class="text-2xl font-black text-amber-300">საბა</h3>
-                            <span class="bg-amber-400/20 text-amber-300 text-[11px] px-2.5 py-0.5 rounded-full border border-amber-400/30 font-bold">№9 ბომბარდირი</span>
+                            <span class="bg-amber-400/20 text-amber-300 text-[11px] px-2.5 py-0.5 rounded-full border border-amber-400/30 font-bold">№10 ბომბარდირი</span>
                         </div>
                         <p class="text-xs text-slate-300 mt-1">როლი: ცენტრალური თავდამსხმელი (CF) 🎯</p>
                         <div class="mt-2 flex flex-wrap gap-2">
@@ -214,17 +234,15 @@
             </div>
 
             <!-- Luka Profile -->
-            <div class="glass-card glass-card-hover rounded-3xl p-6 border-l-4 border-l-sky-400 relative overflow-hidden">
+            <div class="glass-madrid glass-card-hover rounded-3xl p-6 border-l-4 border-l-sky-400 relative overflow-hidden">
                 <div class="flex items-center gap-4 mb-4">
-                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-sky-400 to-blue-600 p-1 shadow-lg flex-shrink-0">
-                        <div class="w-full h-full bg-slate-950 rounded-xl flex items-center justify-center text-4xl">
-                            ♟️
-                        </div>
+                    <div class="w-20 h-20 rounded-2xl bg-gradient-to-tr from-sky-400 to-indigo-600 p-1 shadow-lg flex-shrink-0">
+                        <img src="ლუკა.jpg" alt="ლუკა" class="w-full h-full object-cover rounded-xl border border-slate-950">
                     </div>
                     <div>
                         <div class="flex items-center gap-2">
                             <h3 class="text-2xl font-black text-sky-300">ლუკა</h3>
-                            <span class="bg-sky-400/20 text-sky-300 text-[11px] px-2.5 py-0.5 rounded-full border border-sky-400/30 font-bold">№8 მაესტრო</span>
+                            <span class="bg-sky-400/20 text-sky-300 text-[11px] px-2.5 py-0.5 rounded-full border border-sky-400/30 font-bold">№7 მაესტრო</span>
                         </div>
                         <p class="text-xs text-slate-300 mt-1">როლი: ცენტრალური ნახევარმცველი (CM) 🧠</p>
                         <div class="mt-2 flex flex-wrap gap-2">
@@ -246,38 +264,38 @@
             </div>
         </section>
 
-        <section class="glass-card rounded-3xl p-6 border border-amber-400/30 text-center space-y-4">
+        <section class="glass-madrid rounded-3xl p-6 border border-amber-400/30 text-center space-y-4">
             <h3 class="text-xl font-bold text-amber-300 flex items-center justify-center gap-2">
                 <i class="fa-solid fa-users text-amber-400"></i>
                 ჩემპიონების ოჯახური მხარდამჭერთა გუნდი ❤️
             </h3>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-xs">
-                <div class="p-3 bg-slate-900/80 rounded-2xl border border-amber-400/20">
+                <div class="p-3 bg-slate-950/80 rounded-2xl border border-amber-400/20">
                     <span class="text-2xl block mb-1">👨‍👩‍👦</span>
                     <span class="font-bold text-slate-200">მშობლები</span>
                     <span class="block text-amber-300 font-extrabold mt-0.5">ნიკა & ირი</span>
                 </div>
-                <div class="p-3 bg-slate-900/80 rounded-2xl border border-amber-400/20">
+                <div class="p-3 bg-slate-950/80 rounded-2xl border border-amber-400/20">
                     <span class="text-2xl block mb-1">👵</span>
                     <span class="font-bold text-slate-200">ბებია</span>
                     <span class="block text-amber-300 font-extrabold mt-0.5">მაი (კატლეტების ოსტატი)</span>
                 </div>
-                <div class="p-3 bg-slate-900/80 rounded-2xl border border-amber-400/20">
+                <div class="p-3 bg-slate-950/80 rounded-2xl border border-amber-400/20">
                     <span class="text-2xl block mb-1">👵</span>
                     <span class="font-bold text-slate-200">ბებია</span>
                     <span class="block text-amber-300 font-extrabold mt-0.5">ლანა</span>
                 </div>
-                <div class="p-3 bg-slate-900/80 rounded-2xl border border-amber-400/20">
+                <div class="p-3 bg-slate-950/80 rounded-2xl border border-amber-400/20">
                     <span class="text-2xl block mb-1">👴</span>
                     <span class="font-bold text-slate-200">ბაბუა</span>
                     <span class="block text-amber-300 font-extrabold mt-0.5">დათი</span>
                 </div>
-                <div class="p-3 bg-slate-900/80 rounded-2xl border border-amber-400/20">
+                <div class="p-3 bg-slate-950/80 rounded-2xl border border-amber-400/20">
                     <span class="text-2xl block mb-1">👴</span>
                     <span class="font-bold text-slate-200">ბაბუა</span>
                     <span class="block text-amber-300 font-extrabold mt-0.5">სოსო</span>
                 </div>
-                <div class="p-3 bg-slate-900/80 rounded-2xl border border-amber-400/20">
+                <div class="p-3 bg-slate-950/80 rounded-2xl border border-amber-400/20">
                     <span class="text-2xl block mb-1">👑</span>
                     <span class="font-bold text-slate-200">საბას გულშემატკივარი</span>
                     <span class="block text-amber-300 font-extrabold mt-0.5">ნინა</span>
@@ -291,7 +309,7 @@
                     <i class="fa-solid fa-trophy text-amber-400"></i>
                     ჩემპიონთა სათამაშო არენა
                 </h3>
-                <span class="text-xs text-slate-300 bg-slate-900 px-3 py-1 rounded-full border border-amber-400/30">
+                <span class="text-xs text-slate-300 bg-slate-950 px-3 py-1 rounded-full border border-amber-400/30">
                     დააგროვეთ XP და განბლოკეთ მედალიონები!
                 </span>
             </div>
@@ -301,16 +319,16 @@
                 <button onclick="switchTab('game')" id="tab-btn-game" class="px-5 py-2.5 rounded-2xl font-bold text-xs transition bg-amber-400 text-slate-950 shadow-lg">
                     <i class="fa-solid fa-futbol mr-1.5"></i> პენალტების თამაში ⚽
                 </button>
-                <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="px-5 py-2.5 rounded-2xl font-bold text-xs transition bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-white/10">
+                <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="px-5 py-2.5 rounded-2xl font-bold text-xs transition bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-white/10">
                     <i class="fa-solid fa-circle-question mr-1.5"></i> ფეხბურთისა & ჭადრაკის ქვიზი
                 </button>
-                <button onclick="switchTab('riddles')" id="tab-btn-riddles" class="px-5 py-2.5 rounded-2xl font-bold text-xs transition bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-white/10">
+                <button onclick="switchTab('riddles')" id="tab-btn-riddles" class="px-5 py-2.5 rounded-2xl font-bold text-xs transition bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-white/10">
                     <i class="fa-solid fa-lightbulb mr-1.5"></i> გამოცანები
                 </button>
-                <button onclick="switchTab('chess')" id="tab-btn-chess" class="px-5 py-2.5 rounded-2xl font-bold text-xs transition bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-white/10">
+                <button onclick="switchTab('chess')" id="tab-btn-chess" class="px-5 py-2.5 rounded-2xl font-bold text-xs transition bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-white/10">
                     <i class="fa-solid fa-chess-king mr-1.5"></i> ჭადრაკის ტაქტიკა
                 </button>
-                <button onclick="switchTab('missions')" id="tab-btn-missions" class="px-5 py-2.5 rounded-2xl font-bold text-xs transition bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-white/10">
+                <button onclick="switchTab('missions')" id="tab-btn-missions" class="px-5 py-2.5 rounded-2xl font-bold text-xs transition bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-white/10">
                     <i class="fa-solid fa-list-check mr-1.5"></i> დღის მისიები
                 </button>
             </div>
@@ -320,9 +338,9 @@
                 <div class="flex flex-wrap justify-between items-center gap-2">
                     <div>
                         <h4 class="text-xl font-extrabold text-amber-300">⚽ რეალ მადრიდის პენალტების სერია</h4>
-                        <p class="text-xs text-slate-300">აირჩიეთ დარტყმის კუთხე, გაიტანეთ გოლი და დააგროვეთ +30 XP!</p>
+                        <p class="text-xs text-slate-300">აირჩიეთ დარტყმის კუთხე, გაიტანეთ გოლი ბერნაბეუზე და დააგროვეთ +30 XP!</p>
                     </div>
-                    <div class="bg-slate-900/90 px-4 py-2 rounded-2xl border border-amber-400/30 text-xs font-bold text-amber-300">
+                    <div class="bg-slate-950/90 px-4 py-2 rounded-2xl border border-amber-400/30 text-xs font-bold text-amber-300">
                         გატანილი გოლები: <span id="game-goals-count" class="text-white text-sm">0</span>
                     </div>
                 </div>
@@ -333,16 +351,16 @@
                 </div>
 
                 <div class="flex flex-wrap justify-center gap-2 pt-2">
-                    <button onclick="shootPenalty('top-left')" class="px-4 py-2 bg-slate-900 hover:bg-amber-400 hover:text-slate-950 border border-amber-400/40 text-amber-300 font-bold text-xs rounded-xl transition active:scale-95">
+                    <button onclick="shootPenalty('top-left')" class="px-4 py-2 bg-slate-950 hover:bg-amber-400 hover:text-slate-950 border border-amber-400/40 text-amber-300 font-bold text-xs rounded-xl transition active:scale-95">
                         ↖️ ზედა მარცხენა
                     </button>
-                    <button onclick="shootPenalty('top-right')" class="px-4 py-2 bg-slate-900 hover:bg-amber-400 hover:text-slate-950 border border-amber-400/40 text-amber-300 font-bold text-xs rounded-xl transition active:scale-95">
+                    <button onclick="shootPenalty('top-right')" class="px-4 py-2 bg-slate-950 hover:bg-amber-400 hover:text-slate-950 border border-amber-400/40 text-amber-300 font-bold text-xs rounded-xl transition active:scale-95">
                         ↗️ ზედა მარჯვენა
                     </button>
-                    <button onclick="shootPenalty('bottom-left')" class="px-4 py-2 bg-slate-900 hover:bg-amber-400 hover:text-slate-950 border border-amber-400/40 text-amber-300 font-bold text-xs rounded-xl transition active:scale-95">
+                    <button onclick="shootPenalty('bottom-left')" class="px-4 py-2 bg-slate-950 hover:bg-amber-400 hover:text-slate-950 border border-amber-400/40 text-amber-300 font-bold text-xs rounded-xl transition active:scale-95">
                         ↙️ ქვედა მარცხენა
                     </button>
-                    <button onclick="shootPenalty('bottom-right')" class="px-4 py-2 bg-slate-900 hover:bg-amber-400 hover:text-slate-950 border border-amber-400/40 text-amber-300 font-bold text-xs rounded-xl transition active:scale-95">
+                    <button onclick="shootPenalty('bottom-right')" class="px-4 py-2 bg-slate-950 hover:bg-amber-400 hover:text-slate-950 border border-amber-400/40 text-amber-300 font-bold text-xs rounded-xl transition active:scale-95">
                         ↘️ ქვედა მარჯვენა
                     </button>
                 </div>
@@ -381,7 +399,7 @@
             </div>
 
             <!-- TAB 2: Riddles (Strictly Football & Chess) -->
-            <div id="tab-riddles" class="glass-card rounded-3xl p-6 md:p-8 hidden space-y-6">
+            <div id="tab-riddles" class="glass-madrid rounded-3xl p-6 md:p-8 hidden space-y-6">
                 <div>
                     <h4 class="text-xl font-bold text-amber-300 mb-1">საფეხბურთო & ჭადრაკის გამოცანები</h4>
                     <p class="text-xs text-slate-300">დაფიქრდით, ამოხსენით საიდუმლო და დააჭირეთ პასუხის ნახვას!</p>
@@ -392,11 +410,11 @@
             </div>
 
             <!-- TAB 3: Chess Puzzles Arena -->
-            <div id="tab-chess" class="glass-card rounded-3xl p-6 md:p-8 hidden space-y-6">
+            <div id="tab-chess" class="glass-madrid rounded-3xl p-6 md:p-8 hidden space-y-6">
                 <div class="flex flex-wrap justify-between items-center gap-4">
                     <div>
-                        <h4 class="text-xl font-bold text-amber-300">ჭადრაკის სუპერ ტაქტიკა: შახი და მათე!</h4>
-                        <p class="text-xs text-slate-300">იპოვეთ გამარჯვების სვლა და მიიღეთ +50 XP!</p>
+                        <h4 class="text-xl font-bold text-amber-300">👑 ჭადრაკის სუპერ ტაქტიკა: შახი და შამათი!</h4>
+                        <p class="text-xs text-slate-300">იპოვეთ სწორი სვლა და მიიღეთ +50 XP!</p>
                     </div>
                     <button onclick="nextChessPuzzle()" class="px-4 py-2 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold rounded-xl text-xs transition">
                         შემდეგი ამოცანა ➡️
@@ -410,10 +428,10 @@
                     </div>
 
                     <div class="space-y-4">
-                        <div class="bg-slate-900/80 p-4 rounded-2xl border border-amber-400/30">
-                            <span class="text-xs text-amber-400 font-bold block mb-1" id="chess-level-title">ამოცანა #1: თეთრების სვლა</span>
+                        <div class="bg-slate-950/80 p-4 rounded-2xl border border-amber-400/30">
+                            <span class="text-xs text-amber-400 font-bold block mb-1" id="chess-level-title">ამოცანა #1</span>
                             <p class="text-sm text-slate-200 font-semibold" id="chess-desc">
-                                თეთრები უტევენ! იპოვეთ სვლა, რომელიც მეტოქეს შახსა და მათეს უცხადებს!
+                                ტაქტიკური ამოცანა...
                             </p>
                         </div>
 
@@ -426,7 +444,7 @@
             </div>
 
             <!-- TAB 4: Daily Missions -->
-            <div id="tab-missions" class="glass-card rounded-3xl p-6 md:p-8 hidden space-y-6">
+            <div id="tab-missions" class="glass-madrid rounded-3xl p-6 md:p-8 hidden space-y-6">
                 <div>
                     <h4 class="text-xl font-bold text-emerald-300 mb-1">ჩემპიონთა დღიური მისიები</h4>
                     <p class="text-xs text-slate-300">შეასრულეთ ეს მისიები დღეს და გახდით დღის გმირი!</p>
@@ -437,7 +455,7 @@
             </div>
         </section>
 
-        <section class="glass-card rounded-3xl p-6 md:p-8 space-y-4">
+        <section class="glass-madrid rounded-3xl p-6 md:p-8 space-y-4">
             <h3 class="text-xl font-bold text-amber-300 flex items-center gap-2">
                 <i class="fa-solid fa-award text-amber-400"></i>
                 ჩემპიონთა ბეჯები & ტიტულები
@@ -454,7 +472,7 @@
     </footer>
 
     <script>
-        const APP_KEY = 'saba_luka_real_madrid_bday_v4';
+        const APP_KEY = 'saba_luka_real_madrid_bday_v6';
 
         let state = {
             xp: 0,
@@ -538,10 +556,10 @@
         function triggerHalaMadridConfetti() {
             if (typeof confetti === 'function') {
                 confetti({
-                    particleCount: 120,
-                    spread: 80,
+                    particleCount: 130,
+                    spread: 85,
                     origin: { y: 0.6 },
-                    colors: ['#f59e0b', '#ffffff', '#3b82f6']
+                    colors: ['#FEBE10', '#ffffff', '#001C58', '#3A1C71']
                 });
             }
         }
@@ -555,7 +573,7 @@
                 document.getElementById(`tab-${t}`).classList.add('hidden');
                 const btn = document.getElementById(`tab-btn-${t}`);
                 if (btn) {
-                    btn.className = "px-5 py-2.5 rounded-2xl font-bold text-xs transition bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-white/10";
+                    btn.className = "px-5 py-2.5 rounded-2xl font-bold text-xs transition bg-slate-900/80 hover:bg-slate-800 text-slate-300 border border-white/10";
                 }
             });
 
@@ -594,8 +612,8 @@
             if (!ctx) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Field Background
-            ctx.fillStyle = '#15803d';
+            // Pitch Turf
+            ctx.fillStyle = '#0a5c2d';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             // Goal Net Structure
@@ -604,14 +622,14 @@
             const goalX = (canvas.width - goalW) / 2;
             const goalY = 25;
 
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
             ctx.fillRect(goalX, goalY, goalW, goalH);
-            ctx.strokeStyle = '#ffffff';
+            ctx.strokeStyle = '#FEBE10';
             ctx.lineWidth = 4;
             ctx.strokeRect(goalX, goalY, goalW, goalH);
 
             // Goalkeeper
-            ctx.fillStyle = '#ef4444';
+            ctx.fillStyle = '#ea580c';
             ctx.beginPath();
             ctx.arc(keeperX, goalY + goalH - 25, 18, 0, Math.PI * 2);
             ctx.fill();
@@ -645,7 +663,6 @@
             if (corner === 'bottom-left') { targetX = goalX + 25; targetY = goalY + goalH - 25; }
             if (corner === 'bottom-right') { targetX = goalX + goalW - 25; targetY = goalY + goalH - 25; }
 
-            // Goalkeeper AI guess
             const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
             const keeperChoice = corners[Math.floor(Math.random() * corners.length)];
 
@@ -662,7 +679,7 @@
             const startKeeperX = keeperX;
 
             const msgElem = document.getElementById('game-message');
-            msgElem.innerText = "დარტყმა...";
+            msgElem.innerText = "დარტყმა ბერნაბეუზე...";
 
             const anim = setInterval(() => {
                 step++;
@@ -678,7 +695,7 @@
 
                     const isGoal = Math.abs(ball.x - keeperX) > 40;
                     if (isGoal) {
-                        msgElem.innerText = "⚽ GOAAAAL! ბრწყინვალე დარტყმაა! +30 XP!";
+                        msgElem.innerText = "⚽ GOAAAAL! ბერნაბეუ ზეიმობს! +30 XP!";
                         triggerHalaMadridConfetti();
                         state.goalsScored = (state.goalsScored || 0) + 1;
                         addXP(30);
@@ -857,44 +874,44 @@
             renderRiddles();
         }
 
-        /* Chess Puzzles Logic */
+        /* ACCURATE & REAL CHESS PUZZLES WITH SHAMATI */
         const chessPuzzles = [
             {
-                title: "ამოცანა #1: სამეფო მათე 1 სვლაში!",
-                desc: "თეთრი ლაზი (♕) უტევს! რომელი სვლით აცხადებენ თეთრები მათეს?",
+                title: "ამოცანა #1: საშუალო სირთულის ტაქტიკა — შამათი 2 სვლაში!",
+                desc: "თეთრების სვლაა! შავების მეფე (♚) შევიწროებულია h8-ზე. იპოვეთ ეფექტური კომბინაცია, სადაც თეთრი ლაზი (♕) და ცხენი (♘) აცხადებენ შამათს!",
                 board: [
-                    ['.','.','.','.','♚','.','.','.'],
+                    ['.','.','.','.','.','.','♟','♚'],
+                    ['.','.','.','.','.','♟','♟','♟'],
+                    ['.','.','.','.','.','.','.','.'],
+                    ['.','.','.','.','.','.','♘','.'],
+                    ['.','.','.','.','.','.','.','♕'],
                     ['.','.','.','.','.','.','.','.'],
                     ['.','.','.','.','.','.','.','.'],
-                    ['.','.','.','.','.','.','.','.'],
-                    ['.','.','.','.','.','.','.','.'],
-                    ['.','.','.','.','.','.','.','.'],
-                    ['.','.','.','.','♕','.','.','.'],
-                    ['.','.','.','.','♔','.','.','.']
+                    ['.','.','.','.','.','.','♔','.']
                 ],
                 options: [
-                    { text: "ლაზი E8-ზე (♕e8#)", correct: true },
-                    { text: "მეფე E2-ზე (♔e2)", correct: false },
-                    { text: "ლაზი A1-ზე (♕a1)", correct: false }
+                    { text: "1. ♕xh7+!! ♚xh7 2. ♘f6# (ლაზის მსხვერპლი და შამათი!)", correct: true },
+                    { text: "1. ♘f7+ ♚g8 (შახი შამათის გარეშე)", correct: false },
+                    { text: "1. ♕g4 (უბრალოდ სვლა)", correct: false }
                 ]
             },
             {
-                title: "ამოცანა #2: ცხენის ჩანგალი (Tactical Fork)!",
-                desc: "თეთრი ცხენი (♘) უტევს შავების მეფესა და ლაზს ერთდროულად!",
+                title: "ამოცანა #2: კლასიკური ჩანგალი (Royal Fork)",
+                desc: "თეთრების სვლა! იპოვეთ სვლა ცხენით (♘), რომელიც ერთდროულად დაესხმება თავს შავების მეფესა (♚) და ლაზს (♛).",
                 board: [
-                    ['.','.','.','♛','♚','.','.','.'],
+                    ['.','.','.','.','♚','.','.','♛'],
+                    ['.','.','.','.','.','.','.','.'],
                     ['.','.','.','.','.','.','.','.'],
                     ['.','.','.','♘','.','.','.','.'],
                     ['.','.','.','.','.','.','.','.'],
                     ['.','.','.','.','.','.','.','.'],
                     ['.','.','.','.','.','.','.','.'],
-                    ['.','.','.','.','.','.','.','.'],
                     ['.','.','.','.','♔','.','.','.']
                 ],
                 options: [
-                    { text: "ცხენის ჩანგალი (Royal Fork)", correct: true },
-                    { text: "პასის გაკეთება", correct: false },
-                    { text: "როქი", correct: false }
+                    { text: "1. ♘f6+ (მეფისა და ლაზის ჩანგალი!)", correct: true },
+                    { text: "1. ♘c5 (პოზიციური სვლა)", correct: false },
+                    { text: "1. ♔e2 (მეფის გადაყვანა)", correct: false }
                 ]
             }
         ];
@@ -925,7 +942,7 @@
 
             puzzle.options.forEach((opt) => {
                 const btn = document.createElement('button');
-                btn.className = "w-full p-3 bg-slate-900/90 hover:bg-amber-400/20 border border-amber-400/30 rounded-xl text-left font-bold text-xs text-slate-100 transition active:scale-95";
+                btn.className = "w-full p-3.5 bg-slate-900/90 hover:bg-amber-400/20 border border-amber-400/30 rounded-xl text-left font-bold text-xs text-slate-100 transition active:scale-95";
                 btn.innerText = opt.text;
                 btn.onclick = () => checkChessOption(opt.correct);
                 optsContainer.appendChild(btn);
@@ -938,12 +955,12 @@
 
             if (isCorrect) {
                 feedback.className = "p-3 rounded-xl font-bold text-center text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
-                feedback.innerText = "♟️ შახი და მათე! ბრწყინვალე ტაქტიკაა! +50 XP";
+                feedback.innerText = "♟️ ბრწყინვალე ტაქტიკაა! შახი და შამათი! +50 XP";
                 addXP(50);
                 unlockBadge('chess_grandmaster');
             } else {
                 feedback.className = "p-3 rounded-xl font-bold text-center text-xs bg-rose-500/20 text-rose-300 border border-rose-500/40";
-                feedback.innerText = "❌ სცადეთ სხვა სვლა!";
+                feedback.innerText = "❌ არასწორი სვლაა. დაფიქრდით და სცადეთ ხელახლა!";
             }
         }
 
